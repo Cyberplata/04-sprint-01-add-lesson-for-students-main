@@ -2,11 +2,13 @@ import type { AppDispatch } from '../../app/store.ts'
 import { decksApi } from './decks-api.ts'
 import type { Decks } from './DecksList/decksApi.types.ts'
 
-const initialState = {
-  // decks: [] as any[], // todo: add type
-  // searchParams: {
-  //   name: '',
-  // },
+// const initialState = {
+//   // decks: [] as any[], // todo: add type
+//   // searchParams: {
+//   //   name: '',
+//   // },
+// }
+const initialState: DecksState = {
   decks: {
     items: [],
     pagination: {
@@ -21,12 +23,19 @@ const initialState = {
   },
 }
 
-type DecksState = typeof initialState
+type DecksState = {
+  decks: Decks
+  searchParams: {
+    name: string
+  }
+}
+
+// type DecksState = typeof initialState
 
 export const decksReducer = (state: DecksState = initialState, action: DecksActions): DecksState => {
   switch (action.type) {
     case 'SET_DECKS':
-      return { ...state, decks: action.payload.decks }
+      return { ...state, decks: action.payload.decks, searchParams: { name: '' } }
     default:
       return state
   }
