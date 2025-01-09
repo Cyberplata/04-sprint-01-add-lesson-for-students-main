@@ -23,7 +23,7 @@ const initialState: DecksState = {
   },
 }
 
-type DecksState = {
+export type DecksState = {
   decks: Decks
   searchParams: {
     name: string
@@ -36,6 +36,7 @@ export const decksReducer = (state: DecksState = initialState, action: DecksActi
   switch (action.type) {
     case 'SET_DECKS':
       return { ...state, decks: action.payload.decks, searchParams: { name: '' } }
+      // return { ...state, decks: action.payload.decks}
     default:
       return state
   }
@@ -56,4 +57,4 @@ export const fetchDecksTC = () => (dispatch: AppDispatch) => {
 // запись через ReturnType Actions type
 export type SetDecksActionType = ReturnType<typeof setDecksAC>
 
-type DecksActions = SetDecksActionType
+export type DecksActions = SetDecksActionType
