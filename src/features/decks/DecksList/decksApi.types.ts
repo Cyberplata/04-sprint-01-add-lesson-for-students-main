@@ -53,3 +53,26 @@ export type Decks = {
 //     "totalItems": 0
 //   }
 // }
+
+
+export type BaseResponse = {
+  id: string,
+  userId: string,
+  name: string,
+  isPrivate: boolean,
+  cover: string,
+  created: string,
+  updated: string,
+  cardsCount: string
+}
+
+// {
+//   "id": "string",
+//   "userId": "string",
+//   "name": "string",
+//   "isPrivate": true,
+//   "cover": "string",
+//   "created": "2025-01-09T20:18:28.260Z",
+//   "updated": "2025-01-09T20:18:28.260Z",
+//   "cardsCount": 0
+// }

@@ -13,3 +13,14 @@
 3. Задиспатчить action в компоненте DecksList
 4. Получить decks из redux state в компоненте DecksList
 5. Отрендерить decks, используя компонент DeckItem
+
+Задание 3 (async redux flow)
+Вынести асинхроннную логику из компоненты DecksList
+___
+1. Написать fetchDecksTC (файл decks-thunks.ts)
+2. Использовать fetchDecksTC в компоненте DecksList
+
+Задание 4 (post-запрос)
+1. Написать post-запрос в decksApi (addDeck) - будем работать только с name
+2. Написать addDeckTC и addDeckAC (+case в decksReducer)
+3. Задиспатчить thunk при отправке формы в компоненте AddNewDeckForm (функция onSubmit, name берём из data)

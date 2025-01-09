@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../app/store.ts'
-import { fetchDecksTC } from '../decks-reducer.ts'
 import { selectDecks } from '../decks-selectors.ts'
+import { fetchDecksTC } from '../decks-thunks.ts'
 import { DeckItem } from './DeckItem/DeckItem.tsx'
 import s from './DecksList.module.css'
 
