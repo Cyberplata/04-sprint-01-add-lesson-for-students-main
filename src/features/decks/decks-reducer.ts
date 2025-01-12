@@ -34,7 +34,7 @@ export const decksReducer = (state: DecksState = initialState, action: DecksActi
   switch (action.type) {
     case 'SET_DECKS':
       return { ...state, decks: action.payload.decks, searchParams: { name: '' } }
-    case 'ADD_DECK':
+    case 'ADD_DECK': {
       const newDeck = action.payload.deck;
       return {
         ...state,
@@ -43,10 +43,12 @@ export const decksReducer = (state: DecksState = initialState, action: DecksActi
           items: [newDeck, ...state.decks.items],
           pagination: {
             ...state.decks.pagination,
-            totalItems: state.decks.pagination.totalItems + 1,
+            // totalItems: state.decks.pagination.totalItems + 1,
           },
         },
       }
+    }
+
     // case 'ADD_DECK':
     //   const newDeck: Deck = {
     //     id: 'string',
