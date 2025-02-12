@@ -1,19 +1,15 @@
-import { useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../app/store.ts'
-import { selectDecks } from '../decks-selectors.ts'
-import { fetchDecksTC } from '../decks-thunks.ts'
 import { DeckItem } from './DeckItem/DeckItem.tsx'
 import s from './DecksList.module.css'
+import { useFetchDecks } from './useFetchDecks.ts'
 
 export const DecksList = () => {
-  const decks = useAppSelector(selectDecks)
+  const { decks } = useFetchDecks()
 
-  const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    dispatch(fetchDecksTC())
-  }, [])
-  return <ul className={s.list}>
-    {decks.items.map(deck => <DeckItem key={deck.id} deck={deck} />)}
-  </ul>
+  return (
+    <ul className={s.list}>
+      {decks.map((deck) => (
+        <DeckItem key={deck.id} deck={deck} />
+      ))}
+    </ul>
+  )
 }

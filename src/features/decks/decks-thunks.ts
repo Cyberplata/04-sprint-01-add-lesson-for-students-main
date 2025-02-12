@@ -4,13 +4,13 @@ import { decksApi } from './decks-api.ts'
 import { addDeckAC, setDecksAC } from './decks-reducer.ts'
 
 export const fetchDecksTC = () => (dispatch: AppDispatch) => {
-  decksApi.getDecks().then((res) => {
-    dispatch(setDecksAC({ decks: res.data }))
+  decksApi.fetchDecks().then((res) => {
+    dispatch(setDecksAC({ decks: res.data.items }))
   })
 }
 
 export const addDeckTC = (arg: {name: string}) => async (dispatch: AppDispatch) => {
-  return decksApi.createDeck(arg).then((res) => {
+  decksApi.createDeck(arg).then((res) => {
     dispatch(addDeckAC({ deck: res.data }))
   })
 }

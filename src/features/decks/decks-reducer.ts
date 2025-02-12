@@ -1,55 +1,46 @@
-import type { Deck, Decks } from './DecksList/decksApi.types.ts'
+import type { Deck } from './DecksList/decksApi.types.ts'
 
-// const initialState = {
-//   // decks: [] as any[], // todo: add type
-//   // searchParams: {
-//   //   name: '',
-//   // },
-// }
-const initialState: DecksState = {
-  decks: {
-    items: [],
-    pagination: {
-      currentPage: 0,
-      itemsPerPage: 0,
-      totalPages: 0,
-      totalItems: 0,
-    },
-  },
+const initialState = {
+  decks: [] as Deck[],
   searchParams: {
     name: '',
   },
 }
 
-export type DecksState = {
-  decks: Decks
-  searchParams: {
-    name: string
-  }
-}
-
-// type DecksState = typeof initialState
+type DecksState = typeof initialState
 
 export const decksReducer = (state: DecksState = initialState, action: DecksActions): DecksState => {
   switch (action.type) {
-    case 'SET_DECKS':
-      return { ...state, decks: action.payload.decks, searchParams: { name: '' } }
-    case 'ADD_DECK': {
-      const newDeck = action.payload.deck;
+    case 'DECKS/SET_DECKS':
       return {
         ...state,
-        decks: {
-          ...state.decks,
-          items: [newDeck, ...state.decks.items],
-          pagination: {
-            ...state.decks.pagination,
-            // totalItems: state.decks.pagination.totalItems + 1,
-          },
-        },
+        decks: action.payload.decks,
+      }
+
+    // case 'DECKS/ADD_DECK': {
+    //   const newDeck = action.payload.deck
+    //   return {
+    //     ...state,
+    //     decks: {
+    //       ...state.decks,
+    //       items: [newDeck, ...state.decks.items],
+    //       pagination: {
+    //         ...state.decks.pagination,
+    //         // totalItems: state.decks.pagination.totalItems + 1,
+    //       },
+    //     },
+    //   }
+    // }
+
+    case 'DECKS/ADD_DECK': {
+      const newDeck = action.payload.deck
+      return {
+        ...state,
+        decks: [newDeck, ...state.decks],
       }
     }
 
-    // case 'ADD_DECK':
+    // case 'DECKS/ADD_DECK':
     //   const newDeck: Deck = {
     //     id: 'string',
     //     userId: 'string',
@@ -76,13 +67,13 @@ export const decksReducer = (state: DecksState = initialState, action: DecksActi
 }
 
 // Action creators
-export const setDecksAC = (payload: { decks: Decks }) => {
-  return {type: 'SET_DECKS', payload } as const
+// export const setDecksAC = (payload: { decks: Decks }) => {
+export const setDecksAC = (payload: { decks: Deck[] }) => {
+  return { type: 'DECKS/SET_DECKS', payload } as const
 }
 
 export const addDeckAC = (payload: { deck: Deck }) => {
-// export const addDeckAC = (payload: { name: string }) => {
-  return {type: 'ADD_DECK', payload } as const
+  return { type: 'DECKS/ADD_DECK', payload } as const
 }
 
 // запись через ReturnType Actions type
